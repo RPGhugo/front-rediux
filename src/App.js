@@ -32,9 +32,9 @@ function App() {
 
           <Route element={<Login />} path="/ADM/Login" />
           <Route element={<ListaConteudosADM />} path="/ADM/ListaConteudos" />
-          <Route element={<ConteudoADM />} path="/ADM/Conteudo" />
+          <Route element={<ConteudoADM />} path="/ADM/Conteudo/:id" />
           <Route element={<Cadastrar />} path="/ADM/Cadastrar" />
-          <Route element={<Editar />} path="/ADM/Editar" />
+          <Route element={<Editar />} path="/ADM/Editar/:id" />
         </Routes>
       </BrowserRouter>
     </>

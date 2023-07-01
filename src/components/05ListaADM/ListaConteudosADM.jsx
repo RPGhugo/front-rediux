@@ -32,7 +32,7 @@ const ConteudoADM = () => {
     };
 
     function excluirConteudo(id) {
-        if(window.confirm("Deseja Excluir?" + id )){
+        if(window.confirm("Deseja Excluir? " + id)){
             axios.delete(`http://localhost:3001/contents/delete/${id}`)
             .then(
                 (response)=>{
@@ -165,7 +165,7 @@ const ConteudoADM = () => {
                                         <TableCell align="left">{conteudo.autor}</TableCell>
                                         <TableCell align="left">{conteudo.link}</TableCell>
                                         <TableCell align="center">
-                                            <Link to="/ADM/Conteudo">
+                                            <Link to={`/ADM/Conteudo/${conteudo._id}`}>
                                                 <IconButton aria-label="visualizar"><Visibility /></IconButton>
                                             </Link>
                                         </TableCell>

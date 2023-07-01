@@ -3,8 +3,47 @@ import { InsertDriveFileOutlined, InsertLink, List, PersonOutline, ArrowBackIosN
 import folder from "./folder.svg"
 import { Link } from "react-router-dom";
 import Tollbaradm from "../00TollbarADM/TollbarADM";
+import axios from "axios";
+import { useEffect } from "react"
+import { useState } from "react"
+import { useParams, useNavigate } from "react-router-dom"
 
 const ConteudoADM = () => {
+
+    const [titulo, setTitulo] = useState("")
+    const [autor, setAutor] = useState("")
+    const [descricao, setDescricao] = useState("")
+    const [link, setLink] = useState("")
+    const [tags, setTags] = useState({ carreira: false, fundamentosUX: false, designInteracao: false, UI: false, arquitetura: false })
+    const [midia, setMidia] = useState({ livro: false, artigo: false, video: false, podcast: false })
+
+
+    const { carreira, fundamentosUX, designInteracao, UI, arquitetura } = tags
+    const { livro, artigo, video, podcast } = midia
+    const { id } = useParams()
+    const navigate = useNavigate()
+
+    useEffect(
+        () => {
+            axios.get(`http://localhost:3001/contents/retrieve/${id}`)
+                .then(
+                    (response) => {
+                        setTitulo(response.data.titulo)
+                        setAutor(response.data.autor)
+                        setDescricao(response.data.descricao)
+                        setLink(response.data.link)
+                        setTags(response.data.tags)
+                        setMidia(response.data.midia)
+                    }
+                )
+                .catch(error => console.log(error))
+        }
+        ,
+        []
+    )
+
+
+
     return (
         <>
             <Tollbaradm />
@@ -46,10 +85,10 @@ const ConteudoADM = () => {
                             mt={5}
                         >
                             <Typography variant="h6" component="h1" color="#0C2D8A">
-                                Afinal, o que é realmente UX?
+                                {titulo}
                             </Typography>
                             <Typography variant="subtitle1" component="h2" mb={2}>
-                                O conteúdo esclarece o que de fato é UX.
+                                {descricao}
                             </Typography>
                         </Stack>
 
@@ -61,10 +100,10 @@ const ConteudoADM = () => {
                         >
                             <PersonOutline />
                             <Typography variant="body1" component="body1" fontWeight={500}>
-                                Autor:
+                                Autor: {autor}
                             </Typography>
                             <Typography variant="body1" component="body1">
-                                Juliana do Vale
+                                {autor}
                             </Typography>
                         </Stack>
 
@@ -101,7 +140,7 @@ const ConteudoADM = () => {
                             <Typography variant="body1" component="body1" fontWeight={500}>
                                 Link:
                             </Typography>
-                            <Link href="https://medium.com/@judovale/o-que-%C3%A9-ux-63f34da82398" ml={1}>Ir para o conteúdo</Link>
+                            <Link href= {link} ml={1}>Ir para o conteúdo</Link>
                         </Stack>
                     </Box>
                     <Box mt={5} ml={5}>
