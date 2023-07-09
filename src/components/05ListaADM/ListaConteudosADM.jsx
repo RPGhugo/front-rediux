@@ -25,6 +25,13 @@ const ConteudoADM = () => {
         []
     )
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const searchTerm = search.trim();
+        navigate(`/results?term=${searchTerm}`);
+      };
+
+
     const [search, setSearch] = useState("");
 
     const handleChange = (event) => {
@@ -82,7 +89,8 @@ const ConteudoADM = () => {
                             endAdornment: (
                                 <InputAdornment position="end">
                                     <Button
-                                        sx={{ height: 55 }}
+                                            sx={{ height: 55 }}
+                                            onClick={handleSubmit}
                                     >
                                         <SearchIcon />
                                     </Button>

@@ -5,9 +5,12 @@ import folder from "./folder.png"
 import { ArrowBackIos } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Tollbar from "../00ToolbarU/Toolbar";
+import { useNavigate } from "react-router-dom";
 
 const ListaConteudos = () => {
     const [search, setSearch] = useState("");
+    const navigate = useNavigate();
+    
 
     const handleChange = (event) => {
         setSearch(event.target.value);
@@ -18,6 +21,12 @@ const ListaConteudos = () => {
     const tagChange = (event) => {
         setTag(event.target.value);
     };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const searchTerm = search.trim();
+        navigate(`/results?term=${searchTerm}`);
+      };
 
     return (
         <>
@@ -68,8 +77,9 @@ const ListaConteudos = () => {
                             endAdornment: (
                                 <InputAdornment position="end">
                                     <Button
-                                        sx={{ height: 55 }}
-                                    >
+                                            sx={{ height: 55 }}
+                                            onClick={handleSubmit}
+                                        >
                                         <SearchIcon />
                                     </Button>
                                 </InputAdornment>

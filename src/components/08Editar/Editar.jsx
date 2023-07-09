@@ -43,10 +43,10 @@ const Editar = () => {
     function handleSubmit(event) {
         event.preventDefault()
         const conteudo = { titulo, autor, descricao, link, tags, midia }
-        axios.put(`http://localhost:3001/contents/retrieve/${id}`, conteudo)
+        axios.put(`http://localhost:3001/contents/update/${id}`, conteudo)
             .then(
                 (response) => {
-                    alert(`Conteúdo + "${response.data.titulo}" + " atualizado com sucesso!`)
+                    alert(`Conteúdo  ${response.data._id} atualizado com sucesso!`)
                     navigate("/ADM/ListaConteudos")
                 }
             )

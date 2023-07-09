@@ -16,6 +16,7 @@ import ListaConteudosADM from "./components/05ListaADM/ListaConteudosADM";
 import ConteudoADM from "./components/06ConteudoADM/ConteudoADM";
 import Cadastrar from "./components/07Cadastar/Cadastrar";
 import Editar from "./components/08Editar/Editar";
+import ResultadosPesquisas from "./components/10ResultadosPesquisa/ResultadosPesquisas"
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route element={<ConteudoADM />} path="/ADM/Conteudo/:id" />
           <Route element={<Cadastrar />} path="/ADM/Cadastrar" />
           <Route element={<Editar />} path="/ADM/Editar/:id" />
+          <Route element={<ResultadosPesquisas />} path="/results" />
         </Routes>
       </BrowserRouter>
     </>

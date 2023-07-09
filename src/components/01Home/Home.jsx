@@ -5,19 +5,39 @@ import Logo from "./logo.svg";
 import { Article, Book, Mic, SmartDisplay } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Tollbar from "../00ToolbarU/Toolbar";
+import { useNavigate } from "react-router-dom";
+import { Axios } from "axios";
 
 const Home = () => {
     const [search, setSearch] = useState("");
+    const navigate = useNavigate();
+    const [midia, setMidia] = useState({ livro: false, artigo: false, video: false, podcast: false })
+
+
 
     const handleChange = (event) => {
         setSearch(event.target.value);
     };
+
+    const handleMidiaChange = (event) => {
+        setMidia(event.target.value);
+      };
+      
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        const searchTerm = search.trim();
+        if (searchTerm) {
+            const url = `/results?term=${searchTerm}`;
+            window.location.href = url;
+          }
+        };
 
     const [tag, setTag] = useState('');
 
     const tagChange = (event) => {
         setTag(event.target.value);
     };
+
 
     return (
         <>
@@ -54,6 +74,7 @@ const Home = () => {
                                     <Link to="/Pesquisa">
                                         <Button
                                             sx={{ height: 55 }}
+                                            onClick={handleSubmit}
                                         >
                                             <SearchIcon />
                                         </Button>
@@ -110,10 +131,11 @@ const Home = () => {
                         mt: 2,
                     }}
                 >
-                    <Link to="/Livros">
+                    <Link to={`/results?term=${search}&midia=livro`}>
                         <Button
                             variant="contained"
                             startIcon={<Book />}
+                            onClick={() => setMidia("livro")}
                             sx={{
                                 boxShadow: "none",
                                 width: 150,
@@ -130,11 +152,13 @@ const Home = () => {
                             Livro
                         </Button>
                     </Link>
+                    
 
-                    <Link to="/Artigos">
+                    <Link to={`/results?term=${search}&midia=artigo`}>
                         <Button
                             variant="contained"
                             startIcon={<Article />}
+                            onClick={() => setMidia("artigo")}
                             sx={{
                                 boxShadow: "none",
                                 width: 150,
@@ -152,10 +176,11 @@ const Home = () => {
                         </Button>
                     </Link>
 
-                    <Link to="/Podcasts">
+                    <Link to={`/results?term=${search}&midia=podcast`}>
                         <Button
                             variant="contained"
                             startIcon={<Mic />}
+                            onClick={() => setMidia("podcast")}
                             sx={{
                                 boxShadow: "none",
                                 width: 150,
@@ -173,10 +198,11 @@ const Home = () => {
                         </Button>
                     </Link>
 
-                    <Link to="/Videos">
+                    <Link to={`/results?term=${search}&midia=video`}>
                         <Button
                             variant="contained"
                             startIcon={<SmartDisplay />}
+                            onClick={() => setMidia("videos")}
                             sx={{
                                 boxShadow: "none",
                                 width: 150,

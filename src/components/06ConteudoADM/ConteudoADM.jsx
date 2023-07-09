@@ -87,7 +87,7 @@ const ConteudoADM = () => {
                             <Typography variant="h6" component="h1" color="#0C2D8A">
                                 {titulo}
                             </Typography>
-                            <Typography variant="subtitle1" component="h2" mb={2}>
+                            <Typography variant="subtitle1" component="h2">
                                 {descricao}
                             </Typography>
                         </Stack>
@@ -103,7 +103,7 @@ const ConteudoADM = () => {
                                 Autor: {autor}
                             </Typography>
                             <Typography variant="body1" component="body1">
-                                {autor}
+                            
                             </Typography>
                         </Stack>
 
